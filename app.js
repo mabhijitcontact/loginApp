@@ -12,7 +12,7 @@ var Config = require('./config.json');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
-mongoose.connect(Config.dbConnection);
+mongoose.connect(Config.dbConnection, { useNewUrlParser: true });
 var db = mongoose.connection;
 
 var routes = require('./routes/index');
