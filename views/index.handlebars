@@ -1,0 +1,19 @@
+ <h2 class="page-header">Dashboard</h2>
+<p>Welcome to your dashboard</p>  
+
+<h2> Your Profile</h2>
+{{#if data.firstName }}
+<h5>{{ data.firstName }}</h5>
+{{/if }}
+{{#if data.lastName }}
+<h5>{{ data.lastName }}</h5>
+{{/if}}
+{{#if data.email }}
+<h5>{{ data.email }}</h5>
+{{/if}}
+{{#if data.skill }}
+<h5>{{ data.skill }}</h5>
+{{/if}}
+{{#if data.country }}
+<h5>{{ data.country }}</h5>
+{{/if}}

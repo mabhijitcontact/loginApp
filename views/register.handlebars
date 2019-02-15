@@ -1,0 +1,114 @@
+<style>
+  form > div {
+    margin-bottom: 7px;
+  }
+  form > div > label {
+    width: 8%;
+  }
+
+  form > div > input {
+    width: auto;
+  }
+</style>
+
+<h2 class="page-header">Register</h2>
+{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+{{/if}}
+<form method="post" action="/users/register">
+   <div class="form-group">
+    <label>Username</label>
+    <input type="text" class="form-control" placeholder="Username" name="username">
+  </div>
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" class="form-control" placeholder="First Name" name="firstName">
+  </div>
+  <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" class="form-control" placeholder="last Name" name="lastName">
+  </div>
+  <div class="form-group">
+    <label>Date of Birth</label>
+    <input type="date" class="form-control" placeholder="Date of Birth" name="DOB">
+  </div>
+   <div class="form-group">
+    <label>Email</label>
+    <input type="email" class="form-control" placeholder="Email" name="email">
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" class="form-control" placeholder="Password" name="password">
+  </div>
+  <div class="form-group">
+    <label>Confirm Password</label>
+    <input type="password" class="form-control" placeholder="Password" name="password2">
+  </div>
+  <div class="form-group">
+    <label>Skills </label>
+    <input type="text" class="form-control" placeholder="Skills" id="skill" name="skill">
+  </div>
+  <div class="form-group">
+    <label>Country</label>
+    <input type="text" autocomplete="new-country" class="form-control" placeholder="Country" id="country" name="country">
+  </div>
+
+
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+<script>
+
+$.ui.autocomplete.prototype._renderItem = function (ul, item) {
+    if (item.value === '')
+        t = "None found";
+    else
+    {    
+        var searchMask = this.term;
+        var regEx = new RegExp(searchMask, "ig");
+        var replaceMask = "<span style='font-weight:bold;color:black;'>" + $.trim(this.term) +"</span>";
+        t = item.label.replace(regEx, replaceMask);
+    }
+    
+    return $("<li></li>")
+        .data("item.autocomplete", item)
+        .append(t)
+        .appendTo(ul);
+};
+
+$('#skill').autocomplete({
+    source: function( request, response ) {
+        $.ajax({
+            url: "/getSkills/"+$("#skill").val(),
+          dataType: "json",
+          success: function( data ) {
+              response($.map(data, function(el, index) {
+                        return {                            
+                            value: el
+                        };
+                    }));
+          }
+        });
+      },       
+});
+
+$('#country').autocomplete({
+    source: function( request, response ) {
+        $.ajax({
+            url: "/getCountry/"+$("#country").val(),
+          dataType: "json",
+          success: function( data ) {
+              response($.map(data, function(el, index) {
+                        return {                            
+                            value: el
+                        };
+                    }));
+          }
+        });
+      },       
+});
+  
+</script>
