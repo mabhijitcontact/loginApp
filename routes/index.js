@@ -25,31 +25,25 @@ router.get('/', ensureAuthenticated, function(req, res){
 router.get('/getSkills/:_skillName', function(req, res){
 	var skillName = req.params._skillName;
 	var retSkillArray = [];
-	console.log(skills);
 
 	for(let ii=0; ii < skills.length; ii+=1) {
-		if(skills[ii].name.indexOf(skillName) > -1){
+		if(skills[ii].name.toLowerCase().indexOf(skillName.toLowerCase()) > -1){
 			retSkillArray.push(skills[ii].name);
 		}
 	}
-	//const index = skills.findIndex(skill => skill.name.indexOf(skillName) > -1);
-
-	res.status(200).json(retSkillArray); // 3
+	res.status(200).json(retSkillArray); 
 });
 
 router.get('/getCountry/:_countryName', function(req, res){
 	var countryName = req.params._countryName;
 	var retCountryArray = [];
-	console.log(country);
 
 	for(let ii=0; ii < country.length; ii+=1) {
-		if(country[ii].name.indexOf(countryName) > -1){
+		if(country[ii].name.toLowerCase().indexOf(countryName.toLowerCase()) > -1){
 			retCountryArray.push(country[ii].name);
 		}
 	}
-	//const index = skills.findIndex(skill => skill.name.indexOf(skillName) > -1);
-
-	res.status(200).json(retCountryArray); // 3
+	res.status(200).json(retCountryArray);
 });
 
 function ensureAuthenticated(req, res, next){
