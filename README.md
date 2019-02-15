@@ -11,6 +11,7 @@ download the code from git
 1) configure config.json for Mongo DB,
 2) npm install 
 3) npm start
+4) Skill are like php node c# etc.
 
 ### Installation
 
