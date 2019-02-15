@@ -11,8 +11,11 @@ var LocalStrategy = require('passport-local').Strategy;
 var Config = require('./config.json');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-
-mongoose.connect(Config.dbConnection);
+const OPTS = { useNewUrlParser: true };
+mongoose.connect(Config.dbConnection, OPTS, function(err) {
+  if (err) { return console.error('failed', err);}
+});
+//mongoose.connect(Config.dbConnection,  { useNewUrlParser: true });
 var db = mongoose.connection;
 
 var routes = require('./routes/index');
