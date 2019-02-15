@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
     "dbConnection": "mongodb+srv://interview:test1234@cluster0-tehe3.mongodb.net/loginapp?retryWrites=true"
+=======
+    "dbConnection": "mongodb://localhost:27017/loginapp"
+>>>>>>> b418db1220a772345cee4f368ef6003c0d7ba1a3
 }
